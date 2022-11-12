@@ -1,0 +1,362 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+$success: #59CE8F;
+$brand: #6F38C5;
+$offwhite: #d9d9d9;
+$arrowshadow: #1a2640;
+$error: #D2001A;
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'VT323', monospace;
+}
+
+#__next {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-image: url("/retro-bg.webp");
+  background-size: 100% 100%;
+  padding-top: 20px;
+}
+
+h1 {
+  position: absolute;
+  top: 8px;
+  left: 20px;
+  color: $offwhite;
+  display: flex;
+  align-items: center;
+}
+
+h3 {
+  color: $offwhite;
+  margin: 0;
+  padding: 0;
+  font-size: 1.6rem;
+  position: absolute;
+  bottom: 8px;
+  right: 20px;
+}
+
+@mixin textarea-shadow($color) {
+  border: 3px solid darken($color, 25%);
+  box-shadow: 0px 0px 0px 1px $color,
+    inset 0px 0px 0px 1px $color,
+    1px 2px 0px 2px darken($color, 15%);
+}
+
+textarea {
+  outline: none;
+  margin: 15px;
+  padding: 7px 0 7px 14px;
+  @include textarea-shadow($brand);
+  border-radius: 0.3em;
+  color: #fefefe;
+  background-color: #6B728E;
+  font-family: "M PLUS 1p", sans-serif;
+  font-size: 1.3em;
+  resize: none;
+  font-family: monospace;
+  width: 88vw;
+  height: 70vh;  
+}
+
+@media screen and (min-width: 768px) {
+  textarea {
+    width: 72vw;
+    height: 68vh;  
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  textarea {
+    width: 68vw;
+    height: 60vh;  
+  }
+}
+
+@media screen and (min-width: 1360px) {
+  textarea {
+    width: clamp(900px, 70vw, 1080px);
+    height: clamp(480px, 70vh, 620px);  
+  }
+}
+
+
+@media screen and (min-width: 1600px) {
+  textarea {
+    width: clamp(900px, 60vw, 1080px);
+    height: clamp(480px, 60vh, 620px);  
+  }
+}
+
+.guideline-text {
+  position: absolute;
+  font-size: 1.5em;
+  color: $offwhite;
+  text-shadow: 0 0 0.1em $offwhite, 0 0 0.4em $brand, 0 0 0.5em $brand;
+  transform: rotate(45deg) translate(-50px, -104px);
+  text-transform: uppercase;
+  font-family: 'VT323', monospace;
+}
+
+
+.guideline-text--45 {
+  transform: rotate(45deg) translate(-50px, -58px);
+}
+
+.guideline-text--135 {
+  transform: rotate(-45deg) translate(-18px, 32px);
+}
+
+.arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid $brand;
+  z-index: 1;
+}
+
+.arrow--45 {
+  transform: rotate(45deg);
+}
+
+.arrow--135 {
+  transform: rotate(135deg);
+}
+
+.arrow::before {
+  content: '';
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 50px;
+  background: $brand;
+}
+
+.arrow__shadow {
+  border-top: 20px solid $arrowshadow;
+  z-index: 0;
+}
+
+.arrow__shadow--45 {
+  transform: rotate(45deg) translate(3px, 1px);
+}
+
+.arrow__shadow--135 {
+  transform: rotate(135deg) translate(3px, 1px);
+}
+
+.arrow__shadow::before {
+  background: $arrowshadow;
+}
+
+.fly-45 {
+  animation: fly-45 0.5s ease-in-out infinite alternate;
+}
+
+.fly-135 {
+  animation: fly-135 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes fly-45 {
+  0% {
+    transform: translate(0)
+  }
+  100% {
+    transform: translate(20px, -20px);
+  }
+}
+
+@keyframes fly-135 {
+  0% {
+    transform: translate(0)
+  }
+  100% {
+    transform: translate(20px, 20px);
+  }
+}
+
+button {
+  padding: 8px 18px;
+  margin: 15px;
+  outline: none;
+  border: 3px solid white;
+  box-shadow: 0px 0px 0px 1px rgb(90, 90, 90),
+    inset 0px 0px 0px 1px rgb(90, 90, 90),
+    0px 2px 0px 2px rgb(100, 100, 100);
+  text-shadow: 0px -1px rgb(90, 90, 90),
+    -1px 0px rgb(90, 90, 90);
+  border-radius: 0.5em;
+  color: white;
+  background-color: $brand;
+  font-size: 1.3em;
+  font-weight: 700;
+  cursor: pointer;
+  @include textarea-shadow($brand);
+  text-transform: uppercase;
+  font-family: 'VT323', monospace;
+}
+
+button.disabled {
+  filter: brightness(0.8);
+}
+
+button:not(.disabled):hover {
+  filter: brightness(1.2);
+}
+
+button:not(.disabled):active {
+  transform: scale(0.9);
+}
+
+@keyframes scale-in-out {
+  0% {
+    transform: scale(1);  
+    @include textarea-shadow($success);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+    @include textarea-shadow($brand);
+  }
+}
+
+.scale-in-out {
+  animation: scale-in-out 0.5s ease-in-out;
+}
+
+.error {
+  color: $error;
+  font-size: 1.5em;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: 'VT323', monospace;
+}
+
+.error--shown {
+  animation: error-flash 0.5s ease-in-out;
+}
+
+@keyframes error-flash {
+  0% {
+    color: $error;
+    transform: scale(1);
+  }
+
+  50% {
+    color: lighten($error, 30%);
+    transform: scale(1.1);
+  }
+
+
+  100% {
+    color: $error;
+    transform: scale(1);
+  }
+}
+
+.success {
+  color: $success;
+  font-size: 1.5em;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: 'VT323', monospace;
+}
+
+.success--shown {
+  animation: success-flash 0.5s ease-in-out;
+}
+
+@keyframes success-flash {
+  0% {
+    color: $success;
+    transform: scale(1);
+  }
+
+  50% {
+    color: lighten($success, 30%);
+    transform: scale(1.1);
+  }
+
+  100% {
+    color: $success;
+    transform: scale(1);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .arrow, .guideline-text {
+    display: none;
+  }
+}
+
+@media screen and (max-height: 400px) {
+  textarea, button, .error, .success {
+    display: none;
+  }
+}
+
+@media screen and (max-height: 588px) {
+  h1 {
+    top: 0px;
+  }
+
+  h3 {
+    display: none;
+  }
+
+  textarea {
+    height: 38vh;  
+  }
+
+  .error {
+    font-size: 0.8em;
+  }
+
+  .success {
+    font-size: 0.8em;
+  }
+
+  button {
+    font-size: 0.9em;
+    padding: 5px 10px;
+  }
+}
+
+@media screen and (max-height: 679px) {
+  h3 {
+    display: none;
+  }
+
+  textarea {
+    height: 48vh;  
+  }
+
+  .error {
+    font-size: 1em;
+  }
+
+  .success {
+    font-size: 1em;
+  }
+}
