@@ -1,4 +1,3 @@
-import { customAlphabet } from "nanoid";
 import { NextApiRequest, NextApiResponse } from "next";
 
 var { minify } = require("html-minifier-terser");
